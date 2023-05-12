@@ -8,7 +8,11 @@ const PersonajeService = new personajeService();
 router.get('', Authenticate, async (req, res) => {
   console.log(`This is a get operation`);
 
-  const personaje = await PersonajeService.getAll();
+  const name = req.query.name
+  const age = req.query.age
+  const movies = req.query.movies
+
+  const personaje = await PersonajeService.getAll(name, age, movies);
 
   return res.status(200).json(personaje);
 });

@@ -15,7 +15,7 @@ export class peliculaService{
     
     getById = async (id) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().input("pId", id).query('SELECT * FROM PeliculaSerie WHERE @pId = id');
+        const results = await conn.request().input("pId", id).query('SELECT * FROM PeliculaSerie INNER JOIN PeliPersonaje ON PeliPersonaje.IdPeli = Pelicula.IdPeli INNER JOIN Personaje ON Personaje.IdPersonaje = PeliPersonaje.IdPersonaje WHERE @pId = id'   );
     
         return results.recordset;
     }

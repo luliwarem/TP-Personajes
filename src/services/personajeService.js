@@ -3,10 +3,31 @@ import configDB from '../models/db.js';
 
 
 export class personajeService{
-    getAll = async () => {
+    getAll = async (name, age, movies) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().query('SELECT * FROM PeliculaSerie');
+        const query = 'SELECT * FROM Personaje INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje';
+        const cont = 0
     
+        if (name != undefined) {
+            query+= ' WHERE Nombre = @name'
+            cont++
+        }
+        else if(age != undefined){
+            cont ++
+            if(cont > 0){
+                query += ' and'
+            }
+            query+= ' WHERE Edad = @age'
+        }
+        else if(movies != undefined){
+            if(cont > 0){
+                query += ' and'
+            }
+            query+= ' WHERE idPeli = @movies'
+        }
+
+        const results = await conn.request().query(query)
+
         console.log(results)
     
         return results.recordset;

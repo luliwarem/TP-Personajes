@@ -5,7 +5,7 @@ import configDB from '../models/db.js';
 export class personajeService{
     getAll = async (name, age, movies) => {
         const conn = await sql.connect(configDB);
-        const query = 'SELECT * FROM Personaje INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje';
+        const query = 'SELECT Personaje.IdPersonaje, Imagen, Nombre FROM Personaje INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje';
         const cont = 0
     
         if (name != undefined) {
@@ -23,7 +23,7 @@ export class personajeService{
             if(cont > 0){
                 query += ' and'
             }
-            query+= ' WHERE idPeli = @movies'
+            query+= ' WHERE IdPeli = @movies'
         }
 
         const results = await conn.request().query(query)
@@ -36,7 +36,7 @@ export class personajeService{
     
     getById = async (id) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().input("pId", id).query('SELECT * FROM Personaje WHERE @pId = id');
+        const results = await conn.request().input("pId", id).query('SELECT * FROM Personaje  INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje WHERE Personaje.IdPersonaje = @pId');
     
         return results.recordset;
     }
@@ -45,12 +45,12 @@ export class personajeService{
     updateById = async (id, personaje) => {
         const conn = await sql.connect(configDB);
         const results = await conn.request().input("pId", sql.Int, id)
-        .input( "pImagen", sql.VarChar, personaje.imagen)
-        .input("pNombre", sql.Bit, personaje.nombre)
-        .input( "pEdad", sql.Float, personaje.edad)
-        .input("pPeso", sql.VarChar, personaje.peso)
-        .input("pHistoria", sql.VarChar, personaje.historia)
-        .query('UPDATE Personaje SET Imagen = @pImagen, Nombre = @pNombre, Edad = @pEdad, Peso = @pPeso, Historia = @pHistoria  WHERE @pId = id ');
+        .input( "pImagen", sql.VarChar, personaje.Imagen)
+        .input("pNombre", sql.VarChar, personaje.Nombre)
+        .input( "pEdad", sql.Int, personaje.Edad)
+        .input("pPeso", sql.Int, personaje.Peso)
+        .input("pHistoria", sql.VarChar, personaje.Historia)
+        .query('UPDATE Personaje SET Imagen = @pImagen, Nombre = @pNombre, Edad = @pEdad, Peso = @pPeso, Historia = @pHistoria  WHERE IdPersonaje = @pId');
     
         return results.recordset;
     }
@@ -58,7 +58,7 @@ export class personajeService{
     
     deleteById = async (id) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().input("pId", id).query('DELETE FROM Personaje WHERE @pId = id');
+        const results = await conn.request().input("pId", id).query('DELETE FROM Personaje WHERE IdPersonaje = @pId');
     
         return results.recordset;
     }
@@ -67,11 +67,11 @@ export class personajeService{
     insert = async (personaje) => {
         const conn = await sql.connect(configDB);
         const results = await conn.request() 
-        .input( "pImagen", sql.VarChar, personaje.imagen)
-        .input("pNombre", sql.Bit, personaje.nombre)
-        .input( "pEdad", sql.Float, personaje.edad)
-        .input("pPeso", sql.VarChar, personaje.peso)
-        .input("pHistoria", sql.VarChar, personaje.historia)
+        .input( "pImagen", sql.VarChar, personaje.Imagen)
+        .input("pNombre", sql.VarChar, personaje.Nombre)
+        .input( "pEdad", sql.Int, personaje.Edad)
+        .input("pPeso", sql.Int, personaje.Peso)
+        .input("pHistoria", sql.VarChar, personaje.Historia)
         .query('INSERT INTO Personaje (Imagen, Nombre, Edad, Peso, Historia) VALUES (@pImagen, @pNombre, @pEdad, @pPeso, @pHistoria)');
     
         return results.recordset;

@@ -38,7 +38,7 @@ router.put('/:id', Authenticate, async (req, res) => {
   console.log(`Request URL Param: ${req.params.id}`);
   console.log(`This is a put operation`);
 
-  const personaje = await PersonajeService.updateById(req.body);
+  const personaje = await PersonajeService.updateById(req.params.id, req.body);
 
   return res.status(200).json(personaje);
 });
@@ -47,9 +47,9 @@ router.delete('/:id', Authenticate, async (req, res) => {
   console.log(`Request URL Param: ${req.params.id}`);
   console.log(`This is a delete operation`);
 
-  const personaje = await PersonajeService.deleteById(req.params.id);
+  const id = await PersonajeService.deleteById(req.params.id);
 
-  return res.status(200).json(personaje);
+  return res.status(200).json(id);
 });
 
 export default router;

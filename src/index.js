@@ -15,7 +15,7 @@ app.use(express.json());
 passport.use(jwtStrategy);
 app.use(passport.initialize());
 
-app.use("/personaje", personajeRouter);
+app.use("/characters", personajeRouter);
 app.use("/pelicula", peliculaRouter);
 app.use("/auth", authRouter);
 

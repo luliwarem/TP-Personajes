@@ -5,40 +5,44 @@ import configDB from '../models/db.js';
 export class personajeService{
     getAll = async (name, age, movies) => {
         const conn = await sql.connect(configDB);
-        const query = 'SELECT Personaje.IdPersonaje, Imagen, Nombre FROM Personaje INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje';
-        const cont = 0
-    
-        if (name != undefined) {
-            query+= ' WHERE Nombre = @name'
+        let query = 'SELECT Personaje.IdPersonaje, Imagen, Nombre FROM Personaje'
+        let cont = 0
+
+        
+        if (name) {
+            query+= ' WHERE Nombre = @pName'
             cont++
         }
-        else if(age != undefined){
-            cont ++
+        else if(age){
             if(cont > 0){
                 query += ' and'
             }
-            query+= ' WHERE Edad = @age'
+            query+= ' WHERE Edad = @pAge'
+            cont++
         }
-        else if(movies != undefined){
+        else if(movies){
             if(cont > 0){
                 query += ' and'
             }
-            query+= ' WHERE IdPeli = @movies'
+            query+= ' WHERE IdPeli = @pMovies'
         }
 
-        const results = await conn.request().query(query)
-
-        console.log(results)
-    
+        const results = await conn.request()
+        .input( "pName", sql.VarChar, name)
+        .input("pAge", sql.Int, age)
+        .input( "pMovies", sql.Int, movies)
+        .query(query)    
         return results.recordset;
     }
     
     
     getById = async (id) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().input("pId", id).query('SELECT * FROM Personaje  INNER JOIN PeliPersonaje ON PeliPersonaje.IdPersonaje = Personaje.IdPersonaje WHERE Personaje.IdPersonaje = @pId');
-    
-        return results.recordset;
+        const results = await conn.request().input("pId", id).query('SELECT * FROM Personaje WHERE Personaje.IdPersonaje = @pId');
+        const results2 = await conn.request().input("pId", id).query('SELECT * FROM PeliculaSerie INNER JOIN PeliPersonaje ON PeliculaSerie.IdPeli = PeliPersonaje.IdPeli WHERE PeliPersonaje.IdPersonaje = @pId')
+        const personaje = results.recordset[0]
+        personaje.peliculas = results2.recordset
+        return personaje;
     }
     
     

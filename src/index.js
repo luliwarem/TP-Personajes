@@ -16,7 +16,7 @@ passport.use(jwtStrategy);
 app.use(passport.initialize());
 
 app.use("/characters", personajeRouter);
-app.use("/pelicula", peliculaRouter);
+app.use("/movies", peliculaRouter);
 app.use("/auth", authRouter);
 
 

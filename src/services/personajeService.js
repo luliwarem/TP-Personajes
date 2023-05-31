@@ -9,22 +9,22 @@ export class personajeService{
         let cont = 0
 
         
+        if(movies){
+            cont++
+            query+= ' INNER JOIN PeliPersonaje ON Personaje.IdPersonaje = PeliPersonaje.IdPersonaje WHERE IdPeli = @pMovies'
+        }
         if (name) {
+            if(cont > 0){
+                query += ' and'
+            }
             query+= ' WHERE Nombre = @pName'
             cont++
         }
-        else if(age){
+        if(age){
             if(cont > 0){
                 query += ' and'
             }
             query+= ' WHERE Edad = @pAge'
-            cont++
-        }
-        else if(movies){
-            if(cont > 0){
-                query += ' and'
-            }
-            query+= ' WHERE IdPeli = @pMovies'
         }
 
         const results = await conn.request()

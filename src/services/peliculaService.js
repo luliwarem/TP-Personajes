@@ -12,12 +12,13 @@ export class peliculaService{
             query+= ' WHERE Titulo = @pName'
         }
         if(order){
-            query+= ' ORDER BY FechaDeCreacion @pOrder'
+            query+= ` ORDER BY FechaDeCreacion ${order}`
         }
+
+        console.log(query)
 
         const results = await conn.request()
         .input( "pName", sql.VarChar, name)
-        .input( "pOrder", sql.VarChar, order)
         .query(query)    
         return results.recordset;
     }
@@ -26,7 +27,7 @@ export class peliculaService{
     getById = async (id) => {
         const conn = await sql.connect(configDB);
         const results = await conn.request().input("pId", id).query('SELECT * FROM PeliculaSerie WHERE PeliculaSerie.IdPeli = @pId');
-        const results2 = await conn.request().input("pId", id).query('SELECT * FROM Personaje INNER JOIN PeliPersonaje ON Personaje.IdPersonaje = PeliPersonaje.Personaje WHERE PeliPersonaje.IdPeli = @pId')
+        const results2 = await conn.request().input("pId", id).query('SELECT * FROM Personaje INNER JOIN PeliPersonaje ON Personaje.IdPersonaje = PeliPersonaje.IdPersonaje WHERE PeliPersonaje.IdPeli = @pId')
         const pelicula = results.recordset[0]
         pelicula.peliculas = results2.recordset
         return pelicula;
@@ -38,9 +39,9 @@ export class peliculaService{
         const results = await conn.request().input("pId", sql.Int, id)
         .input( "pImagen", sql.VarChar, pelicula.Imagen)
         .input("pTitulo", sql.VarChar, pelicula.Titulo)
-        .input( "pFechaDeCreacion", sql.Int, pelicula.FechaDeCreacion)
-        .input("pCalificacion", sql.Int, pelicula.Calificacion)
-        .query('UPDATE Pelicula SET Imagen = @pImagen, Titulo = @pTitulo, FechaDeCreacion = @pFechaDeCreacion, Calificacion = @pCalificacion  WHERE IdPeli = @pId');
+        .input( "pFechaDeCreacion", sql.Date, pelicula.FechaDeCreacion)
+        .input("pCalificacion", sql.Float, pelicula.Calificacion)
+        .query('UPDATE PeliculaSerie SET Imagen = @pImagen, Titulo = @pTitulo, FechaDeCreacion = @pFechaDeCreacion, Calificacion = @pCalificacion  WHERE IdPeli = @pId');
     
         return results.recordset;
     }
@@ -48,7 +49,7 @@ export class peliculaService{
     
     deleteById = async (id) => {
         const conn = await sql.connect(configDB);
-        const results = await conn.request().input("pId", id).query('DELETE FROM Pelicula WHERE IdPeli = @pId');
+        const results = await conn.request().input("pId", id).query('DELETE FROM PeliculaSerie WHERE IdPeli = @pId');
     
         return results.recordset;
     }
@@ -59,9 +60,9 @@ export class peliculaService{
         const results = await conn.request() 
         .input( "pImagen", sql.VarChar, pelicula.Imagen)
         .input("pTitulo", sql.VarChar, pelicula.Titulo)
-        .input( "pFechaDeCreacion", sql.Int, pelicula.FechaDeCreacion)
-        .input("pCalificacion", sql.Int, pelicula.Calificacion)
-        .query('INSERT INTO Pelicula (Imagen, Titulo, FechaDeCreacion, Calificacion) VALUES (@pImagen, @pTitulo, @pFechaDeCreacion, @pCalificacion)');
+        .input( "pFechaDeCreacion", sql.Date, pelicula.FechaDeCreacion)
+        .input("pCalificacion", sql.Float, pelicula.Calificacion)
+        .query('INSERT INTO PeliculaSerie (Imagen, Titulo, FechaDeCreacion, Calificacion) VALUES (@pImagen, @pTitulo, @pFechaDeCreacion, @pCalificacion)');
     
         return results.recordset;
     }

@@ -8,7 +8,6 @@ export class personajeService{
         let query = 'SELECT Personaje.IdPersonaje, Imagen, Nombre FROM Personaje'
         let cont = 0
 
-        
         if(movies){
             cont++
             query+= ' INNER JOIN PeliPersonaje ON Personaje.IdPersonaje = PeliPersonaje.IdPersonaje WHERE IdPeli = @pMovies'
@@ -34,7 +33,6 @@ export class personajeService{
         .query(query)    
         return results.recordset;
     }
-    
     
     getById = async (id) => {
         const conn = await sql.connect(configDB);

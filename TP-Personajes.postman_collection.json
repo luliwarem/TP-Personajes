@@ -1,0 +1,315 @@
+{
+	"info": {
+		"_postman_id": "4349ed95-cce9-4a37-9e8b-b382d78f782a",
+		"name": "TP-Personajes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetToken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPelicula - Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/movies?name=Jessie&order=ASC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Jessie"
+						},
+						{
+							"key": "order",
+							"value": "ASC"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPelicula - Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/movies/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePelicula - Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Imagen\": \"https://resizing.flixster.com/9rakSOd5rZ5jr-FRPfc7USbVZ8k=/206x305/v2/https://flxt.tmsimg.com/assets/p9047884_p_v8_ad.jpg\",\r\n    \"Titulo\": \"Radio Rebel\",\r\n    \"FechaDeCreacion\": \"2012-02-17T00:00:00.000Z\",\r\n    \"Calificacion\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/movies/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePelicula - Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/movies/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertPelicula",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Imagen\": \"https://resizing.flixster.com/9rakSOd5rZ5jr-FRPfc7USbVZ8k=/206x305/v2/https://flxt.tmsimg.com/assets/p9047884_p_v8_ad.jpg\",\r\n    \"Titulo\": \"Radio Rebel\",\r\n    \"FechaDeCreacion\": \"2012-02-17T00:00:00.000Z\",\r\n    \"Calificacion\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPersonaje - Params",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters?name=Debby Ryan&age=29&movies=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Debby Ryan"
+						},
+						{
+							"key": "age",
+							"value": "29"
+						},
+						{
+							"key": "movies",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPersonaje - Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdatePersonaje - Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"Imagen\": \"https://es.web.img2.acsta.net/pictures/19/10/17/23/28/5724036.jpg\",\r\n        \"Nombre\": \"Sofia Carson\",\r\n        \"Edad\": 30,\r\n        \"Peso\": 60,\r\n        \"Historia\": \"Sofia Daccarett Char??, ?? más conocida como Sofia Carson, es una actriz, cantante, bailarina, y compositora estadounidense de origen Colombiano, Sirio y Libanés. Además sirve como embajadora de UNICEF y de la Fundación Cultural Latin Grammy.?? \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/characters/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePersonaje - Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/characters/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertPersonaje",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"Imagen\": \"https://es.web.img2.acsta.net/pictures/19/10/17/23/28/5724036.jpg\",\r\n        \"Nombre\": \"Sofia Carson\",\r\n        \"Edad\": 30,\r\n        \"Peso\": 60,\r\n        \"Historia\": \"Sofia Daccarett Char??, ?? más conocida como Sofia Carson, es una actriz, cantante, bailarina, y compositora estadounidense de origen Colombiano, Sirio y Libanés. Además sirve como embajadora de UNICEF y de la Fundación Cultural Latin Grammy.?? \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/characters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"characters"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiY3VzdG9tIHBheWxvYWQiLCJ1c2VyRW1haWwiOiJQUzNBZEpDc2FQa2hYNW9DMUVAZXhhbXBsZS5jb20iLCJpYXQiOjE2ODYzMTQ5OTcsImV4cCI6MTY4NjM0OTU1NywiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3QvIl0sImlzcyI6Imh0dHA6Ly90cC1wZXJzb25hamVzIiwic3ViIjoiUFMzQWRKQ3NhUGtoWDVvQzFFIn0.bgs-ILHOQmHPdhtI4UOOuZH3wx_laKnV4f766aoFGCY",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

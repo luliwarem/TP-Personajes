@@ -16,14 +16,20 @@ export class personajeService{
             if(cont > 0){
                 query += ' and'
             }
-            query+= ' WHERE Nombre = @pName'
+            else{
+                query += ' WHERE'
+            }
+            query+= ' Nombre = @pName'
             cont++
         }
         if(age){
             if(cont > 0){
                 query += ' and'
             }
-            query+= ' WHERE Edad = @pAge'
+            else{
+                query += ' WHERE'
+            }
+            query+= ' Edad = @pAge'
         }
 
         const results = await conn.request()

@@ -1,4 +1,4 @@
-export default class Personaje {
+export default class Pelicula {
     id;
     imagen;
     titulo;

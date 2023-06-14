@@ -71,6 +71,7 @@ export class personajeService{
     
     deleteById = async (id) => {
         const conn = await sql.connect(configDB);
+        await conn.request().input("pId", id).query('DELETE FROM PeliPersonaje WHERE IdPeli = @pId');
         const results = await conn.request().input("pId", id).query('DELETE FROM Personaje WHERE IdPersonaje = @pId');
     
         return results.recordset;

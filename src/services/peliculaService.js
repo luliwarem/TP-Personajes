@@ -36,19 +36,24 @@ export class peliculaService{
     
     updateById = async (id, pelicula) => {
         const conn = await sql.connect(configDB);
+
+        const peliculaOriginal =  await this.getById(id)
         const results = await conn.request().input("pId", sql.Int, id)
-        .input( "pImagen", sql.VarChar, pelicula.Imagen)
-        .input("pTitulo", sql.VarChar, pelicula.Titulo)
-        .input( "pFechaDeCreacion", sql.Date, pelicula.FechaDeCreacion)
-        .input("pCalificacion", sql.Float, pelicula.Calificacion)
+
+        .input( "pImagen", sql.VarChar, pelicula?.Imagen ?? peliculaOriginal.Imagen)
+        .input("pTitulo", sql.VarChar, pelicula?.Titulo ?? peliculaOriginal.Titulo)
+        .input( "pFechaDeCreacion", sql.Date, pelicula?.FechaDeCreacion ?? peliculaOriginal.FechaDeCreacion)
+        .input("pCalificacion", sql.Float, pelicula?.Calificacion ?? peliculaOriginal.Calificacion)
         .query('UPDATE PeliculaSerie SET Imagen = @pImagen, Titulo = @pTitulo, FechaDeCreacion = @pFechaDeCreacion, Calificacion = @pCalificacion  WHERE IdPeli = @pId');
-    
+
+
         return results.recordset;
     }
     
     
     deleteById = async (id) => {
         const conn = await sql.connect(configDB);
+        await conn.request().input("pId", id).query('DELETE FROM PeliPersonaje WHERE IdPeli = @pId');
         const results = await conn.request().input("pId", id).query('DELETE FROM PeliculaSerie WHERE IdPeli = @pId');
     
         return results.recordset;
@@ -58,12 +63,12 @@ export class peliculaService{
     insert = async (pelicula) => {
         const conn = await sql.connect(configDB);
         const results = await conn.request() 
-        .input( "pImagen", sql.VarChar, pelicula.Imagen)
-        .input("pTitulo", sql.VarChar, pelicula.Titulo)
-        .input( "pFechaDeCreacion", sql.Date, pelicula.FechaDeCreacion)
-        .input("pCalificacion", sql.Float, pelicula.Calificacion)
+        .input( "pImagen", sql.VarChar, pelicula?.Imagen)
+        .input("pTitulo", sql.VarChar, pelicula?.Titulo)
+        .input( "pFechaDeCreacion", sql.Date, pelicula?.FechaDeCreacion)
+        .input("pCalificacion", sql.Float, pelicula?.Calificacion)
         .query('INSERT INTO PeliculaSerie (Imagen, Titulo, FechaDeCreacion, Calificacion) VALUES (@pImagen, @pTitulo, @pFechaDeCreacion, @pCalificacion)');
-    
+
         return results.recordset;
     }
 

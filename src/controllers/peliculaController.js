@@ -28,14 +28,26 @@ router.get('/:id', Authenticate, async (req, res) => {
 router.post('', Authenticate, async (req, res) => {
   console.log(`This is a post operation`);
 
+  
+  if (req.body.Calificacion < 1 || req.body.Calificacion > 5 ) {
+    return res.status(400).json({error: "La calificacion no es valida"})
+  }
+    
   const pelicula = await PeliculaService.insert(req.body);
 
   return res.status(201).json(pelicula);
+  
+  
+
 });
 
 router.put('/:id', Authenticate, async (req, res) => {
   console.log(`Request URL Param: ${req.params.id}`);
   console.log(`This is a put operation`);
+
+  if (req.body.Calificacion < 1 || req.body.Calificacion > 5 ) {
+    return res.status(400).json({error: "La calificacion no es valida"})
+  }
 
   const pelicula = await PeliculaService.updateById(req.params.id, req.body);
 

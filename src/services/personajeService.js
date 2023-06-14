@@ -52,12 +52,17 @@ export class personajeService{
     
     updateById = async (id, personaje) => {
         const conn = await sql.connect(configDB);
+
+        const personajeOriginal = await this.getById(id)
+
         const results = await conn.request().input("pId", sql.Int, id)
-        .input( "pImagen", sql.VarChar, personaje.Imagen)
-        .input("pNombre", sql.VarChar, personaje.Nombre)
-        .input( "pEdad", sql.Int, personaje.Edad)
-        .input("pPeso", sql.Int, personaje.Peso)
-        .input("pHistoria", sql.VarChar, personaje.Historia)
+
+        .input( "pImagen", sql.VarChar, personaje?.Imagen ?? personajeOriginal.Imagen)
+        .input("pNombre", sql.VarChar, personaje?.Nombre ?? personajeOriginal.Nombre)
+        .input( "pEdad", sql.Int, personaje?.Edad ?? personajeOriginal.Edad)
+        .input("pPeso", sql.Int, personaje?.Peso ?? personajeOriginal.Peso)
+        .input("pHistoria", sql.VarChar, personaje?.Historia ?? personajeOriginal.Historia)
+
         .query('UPDATE Personaje SET Imagen = @pImagen, Nombre = @pNombre, Edad = @pEdad, Peso = @pPeso, Historia = @pHistoria  WHERE IdPersonaje = @pId');
     
         return results.recordset;
@@ -75,11 +80,11 @@ export class personajeService{
     insert = async (personaje) => {
         const conn = await sql.connect(configDB);
         const results = await conn.request() 
-        .input( "pImagen", sql.VarChar, personaje.Imagen)
-        .input("pNombre", sql.VarChar, personaje.Nombre)
-        .input( "pEdad", sql.Int, personaje.Edad)
-        .input("pPeso", sql.Int, personaje.Peso)
-        .input("pHistoria", sql.VarChar, personaje.Historia)
+        .input( "pImagen", sql.VarChar, personaje?.Imagen)
+        .input("pNombre", sql.VarChar, personaje?.Nombre)
+        .input( "pEdad", sql.Int, personaje?.Edad)
+        .input("pPeso", sql.Int, personaje?.Peso)
+        .input("pHistoria", sql.VarChar, personaje?.Historia)
         .query('INSERT INTO Personaje (Imagen, Nombre, Edad, Peso, Historia) VALUES (@pImagen, @pNombre, @pEdad, @pPeso, @pHistoria)');
     
         return results.recordset;

@@ -9,3 +9,6 @@ Posee la collection de postman para probar todos los endpoints.
 La base de datos tiene que ser creada manualmente con el nombre "TP-Personajes"
 Incluye dos archivos SQL que deben ser ejecutados dentro de la misma.
 
+
+//AGREGAR COMANDOS PARA EJECUTAR Y DONDE VA A ESTAR DISPONIBLE
+

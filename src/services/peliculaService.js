@@ -30,6 +30,7 @@ export class peliculaService{
         const results2 = await conn.request().input("pId", id).query('SELECT * FROM Personaje INNER JOIN PeliPersonaje ON Personaje.IdPersonaje = PeliPersonaje.IdPersonaje WHERE PeliPersonaje.IdPeli = @pId')
         const pelicula = results.recordset[0]
         pelicula.peliculas = results2.recordset
+        
         return pelicula;
     }
     
@@ -46,7 +47,11 @@ export class peliculaService{
         .input("pCalificacion", sql.Float, pelicula?.Calificacion ?? peliculaOriginal.Calificacion)
         .query('UPDATE PeliculaSerie SET Imagen = @pImagen, Titulo = @pTitulo, FechaDeCreacion = @pFechaDeCreacion, Calificacion = @pCalificacion  WHERE IdPeli = @pId');
 
-
+        
+        if (results.rowsAffected[0] == 0){
+            return "Error";
+        } 
+        
         return results.recordset;
     }
     
@@ -55,7 +60,11 @@ export class peliculaService{
         const conn = await sql.connect(configDB);
         await conn.request().input("pId", id).query('DELETE FROM PeliPersonaje WHERE IdPeli = @pId');
         const results = await conn.request().input("pId", id).query('DELETE FROM PeliculaSerie WHERE IdPeli = @pId');
-    
+
+        if (results.rowsAffected[0] == 0){
+            return "Error";
+        } 
+
         return results.recordset;
     }
     

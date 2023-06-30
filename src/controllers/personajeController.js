@@ -23,6 +23,11 @@ router.get('/:id', Authenticate, async (req, res) => {
 
   const personaje = await PersonajeService.getById(req.params.id);
 
+  if(personaje == undefined){
+    return res.status(404).json({error: `Id no encontrado`})
+
+  }
+
   return res.status(200).json(personaje);
 });
 
@@ -40,16 +45,27 @@ router.put('/:id', Authenticate, async (req, res) => {
 
   const personaje = await PersonajeService.updateById(req.params.id, req.body);
 
-  return res.status(200).json(personaje);
+  if(personaje == "Error"){
+    return res.status(404).json({error: `Id no encontrado`})
+  }else{
+    return res.status(200).json(personaje);
+  }
+
 });
 
 router.delete('/:id', Authenticate, async (req, res) => {
   console.log(`Request URL Param: ${req.params.id}`);
   console.log(`This is a delete operation`);
 
+  
   const id = await PersonajeService.deleteById(req.params.id);
 
-  return res.status(200).json(id);
+  if(pelicula == "Error"){
+    return res.status(404).json({error: `Id no encontrado`})
+  }else{
+    return res.status(200).json(pelicula);
+  }
+
 });
 
 export default router;

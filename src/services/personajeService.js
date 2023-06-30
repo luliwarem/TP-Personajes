@@ -64,6 +64,10 @@ export class personajeService{
         .input("pHistoria", sql.VarChar, personaje?.Historia ?? personajeOriginal.Historia)
 
         .query('UPDATE Personaje SET Imagen = @pImagen, Nombre = @pNombre, Edad = @pEdad, Peso = @pPeso, Historia = @pHistoria  WHERE IdPersonaje = @pId');
+        
+        if (results.rowsAffected[0] == 0){
+            return "Error";
+        } 
     
         return results.recordset;
     }
@@ -73,7 +77,10 @@ export class personajeService{
         const conn = await sql.connect(configDB);
         await conn.request().input("pId", id).query('DELETE FROM PeliPersonaje WHERE IdPeli = @pId');
         const results = await conn.request().input("pId", id).query('DELETE FROM Personaje WHERE IdPersonaje = @pId');
-    
+
+        if (results.rowsAffected[0] == 0){
+            return "Error";
+        } 
         return results.recordset;
     }
     

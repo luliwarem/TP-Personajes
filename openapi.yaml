@@ -12,6 +12,8 @@ tags:
     
   - name: personajes
     description: Endpoints de personajes
+security:
+  - bearerAuth: [] 
 paths:
   /auth/login:
     get:
@@ -252,3 +254,8 @@ components:
           type: integer
         Historia:
           type: string
+  securitySchemes:
+    bearerAuth:            # arbitrary name for the security scheme
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 

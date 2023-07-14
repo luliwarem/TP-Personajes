@@ -7,7 +7,7 @@ Version de Node v18.14.0
 
 Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
 
-Posee una collection de postman para acceder a todos los endpoints.
+Posee una [collection de postman](./TP-Personajes.postman_collection) para acceder a todos los endpoints.
 El archivo de swagger *openapi.yaml* tiene la descripcion de todos los endpoints con sus correspondientes paramentros.
 
 Dentro del archivo *.env* hay variables de entrono para adecuar a el codigo, posee la key, el issuer, server y otros variables configurables.

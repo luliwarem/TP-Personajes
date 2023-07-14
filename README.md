@@ -2,6 +2,14 @@
 
 ### Info general
 Este trabajo practico es una api backend que posee endpoints relacionados a una base de datos de peliculas y presonajes. Con esta api podras crear, eliminar, actualizar y obtener tanto peliculas como personajes. 
+
+### Tecnologias y dependencias
+- [Node v18.14.0](https://nodejs.org/es/docs)
+- [Nodemon ](./TP-Personajes.postman_collection.json)
+- [collection de postman](./TP-Personajes.postman_collection.json)
+- [collection de postman](./TP-Personajes.postman_collection.json)
+- [collection de postman](./TP-Personajes.postman_collection.json)
+
 Utiliza Nodemon, Express, SQL, Cors y Swagger.
 Version de Node v18.14.0
 

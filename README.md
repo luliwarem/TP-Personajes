@@ -9,9 +9,8 @@ Este trabajo practico es una api backend que posee endpoints relacionados a una 
 - [Cors v2.8.5](https://www.npmjs.com/package/cors)
 - [Express v4.18.2](https://expressjs.com/)
 - [MSSQL Server v9.1.1](https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16)
-- [Swagger ]
-
-Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
+- [Swagger v1.0.11](https://swagger.io/docs/)
+- Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
 
 Posee una [collection de postman](./TP-Personajes.postman_collection.json) para acceder a todos los endpoints.
 El archivo de swagger *openapi.yaml* tiene la descripcion de todos los endpoints con sus correspondientes paramentros.

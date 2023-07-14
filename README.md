@@ -5,13 +5,11 @@ Este trabajo practico es una api backend que posee endpoints relacionados a una 
 
 ### Tecnologias y dependencias
 - [Node v18.14.0](https://nodejs.org/es/docs)
-- [Nodemon ](./TP-Personajes.postman_collection.json)
-- [collection de postman](./TP-Personajes.postman_collection.json)
-- [collection de postman](./TP-Personajes.postman_collection.json)
-- [collection de postman](./TP-Personajes.postman_collection.json)
-
-Utiliza Nodemon, Express, SQL, Cors y Swagger.
-Version de Node v18.14.0
+- [Nodemon v9.3.1](https://nodemon.io/)
+- [Cors v2.8.5](https://www.npmjs.com/package/cors)
+- [Express v4.18.2](https://expressjs.com/)
+- [MSSQL Server v9.1.1](https://learn.microsoft.com/en-us/sql/?view=sql-server-ver16)
+- [Swagger ]
 
 Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
 

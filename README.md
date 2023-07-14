@@ -1,7 +1,7 @@
 # TP-Personajes
 
 Utiliza Nodemon, Express, SQL, Cors, Swagger.
-Clonar el repositorio entero, para instalar dependencias ejecutar `npm i --force`
+Clonar el repositorio entero, para instalar dependencias ejecutar `npm i`
 
 Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
 

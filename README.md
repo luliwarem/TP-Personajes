@@ -1,15 +1,22 @@
 # TP-Personajes
 
-Utiliza Nodemon, Express, SQL, Cors, Swagger.
-Clonar el repositorio entero, para instalar dependencias ejecutar `npm i`
+### Info general
+Este trabajo practico es una api backend que posee endpoints relacionados a una base de datos de peliculas y presonajes. Con esta api podras crear, eliminar, actualizar y obtener tanto peliculas como personajes. 
+Utiliza Nodemon, Express, SQL, Cors y Swagger.
+Version de Node v18.14.0
 
 Para la autenticacion utiliza el metodo bearer token mediante la [jwt strategy](https://jwt.io/)
 
 Posee una collection de postman para acceder a todos los endpoints.
 El archivo de swagger *openapi.yaml* tiene la descripcion de todos los endpoints con sus correspondientes paramentros.
 
-La base de datos tiene que ser creada manualmente con el nombre "TP-Personajes".
-Ejecutar dentro de la misma los archivos *01 - CreateLoginAndUser.sql* y *TP-Personajes.sql*
-
 Dentro del archivo *.env* hay variables de entrono para adecuar a el codigo, posee la key, el issuer, server y otros variables configurables.
-Para levantar el ptoyecto ejecutar `npm run start`
+
+### Pasos para ejecutar
+- Clonar el repositorio entero
+- Instalar dependencias ejecutar `npm i`
+- Crear la base de datos "TP-Personajes" en MSSQL Server
+- Ejecutar *01 - CreateLoginAndUser.sql* en la base datos
+- Ejecutar *TP-Personajes.sql* en la base datos
+- Adecuar las variables del archivo *.env*
+- Ejecutar `npm run start`

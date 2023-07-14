@@ -9,7 +9,7 @@ Posee una collection de postman para acceder a todos los endpoints.
 El archivo de swagger *openapi.yaml* tiene la descripcion de todos los endpoints con sus correspondientes paramentros.
 
 La base de datos tiene que ser creada manualmente con el nombre "TP-Personajes".
-Ejecutar dentro de la misma los archivos **
+Ejecutar dentro de la misma los archivos *01 - CreateLoginAndUser.sql* y *TP-Personajes.sql*
 
 Dentro del archivo *.env* hay variables de entrono para adecuar a el codigo, posee la key, el issuer, server y otros variables configurables.
 Para levantar el ptoyecto ejecutar `npm run start`
